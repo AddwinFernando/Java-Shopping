@@ -60,7 +60,7 @@ Working on the following sections
 Credentials 
 -----------
   -> For Login use the following credentials
-      *Email = "a" | Password = "a"
-	  *Email = "b" | Password = "b"
+	- *Email = "a" | Password = "a"
+	- *Email = "b" | Password = "b"
 	  
   
