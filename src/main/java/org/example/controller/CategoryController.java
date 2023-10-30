@@ -29,7 +29,7 @@ public class CategoryController {
         try{
             int choice = AppInput.enterInt(StringUtil.ENTER_CHOICE);
             if (choice == 99){
-
+                homeController.printMenu();
             } else {
                 int catId = 0;
                 for(Category cat:categories){

@@ -1,17 +1,28 @@
 package org.example.util;
 
-import org.example.models.Category;
-import org.example.models.Product;
-import org.example.models.Role;
-import org.example.models.User;
+import org.example.models.*;
 
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LoadUtils {
     private static ArrayList<Category> categories = new ArrayList<>();
     private static ArrayList<Product> products = new ArrayList<>();
+
+    private static ArrayList<Cart> cart = new ArrayList<>();
+
+    public static void setCart(ArrayList<Cart> cart) {
+        LoadUtils.cart = cart;
+    }
+
+    public static ArrayList<Cart> getCart() {
+        return cart;
+    }
+
+    //    private static  ArrayList<Order> Orders = new ArrayList<>();
     public static void load(){
         try {
             Scanner scanner = new Scanner(FileUtil.getCategoriesFile());
@@ -44,9 +55,37 @@ public class LoadUtils {
                 }
             }
             scanner.close();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        try {
+            Scanner scanner = new Scanner(FileUtil.getCartFile());
+            while (scanner.hasNext()) {
+                String value = scanner.next().trim();
+                if (!value.startsWith("user")) {
+                    String[] cartArray = value.split(",");
+                    cart.add(new Cart(Integer.parseInt(cartArray[0]),Integer.parseInt(cartArray[1]),cartArray[2],Integer.parseInt(cartArray[3]),Double.parseDouble(cartArray[4])));
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void logoutCartLoad(ArrayList<Cart> cart){
+        try{
+            FileWriter csv = new FileWriter(FileUtil.getCartFile());
+            for(Cart cartProd: cart){
+                csv.append(cartProd.getUserid()+","+cartProd.getId()+","+cartProd.getTitle()+","+cartProd.getCount()+","+cartProd.getPrice());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 

@@ -9,7 +9,15 @@ public class User {
     private String name;
     private Role role;
 
+    private Cart userCart;
 
+    public void setUserCart(Cart userCart) {
+        this.userCart = userCart;
+    }
+
+    public Cart getUserCart() {
+        return userCart;
+    }
 
     public int getId() {
         return id;
@@ -50,4 +58,5 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
 }

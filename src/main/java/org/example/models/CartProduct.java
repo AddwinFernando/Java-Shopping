@@ -4,6 +4,11 @@ public class CartProduct {
     private Product product;
     private int count;
 
+    public CartProduct(Product userProduct, int i) {
+        this.product = userProduct;
+        this.count = i;
+    }
+
     public Product getProduct() {
         return product;
     }

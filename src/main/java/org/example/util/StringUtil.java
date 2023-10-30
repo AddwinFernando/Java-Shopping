@@ -15,4 +15,5 @@ public class StringUtil {
     public static final String AUTH_MENU = "1. Login \n2. Register";
     public static final String HOME_MENU = "1. Categories \n2. Products \n3. Cart \n4. Order \n5. Logout";
     public static final String PRODUCT_MENU = "Products";
+    public static final String STATUSP ="Processing";
 }
