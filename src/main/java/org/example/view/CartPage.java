@@ -35,10 +35,27 @@ public class CartPage {
 //            e.printStackTrace();
 //        }
         ArrayList<Cart> Cart = LoadUtils.getCart();
-        for (Cart cartProd:Cart){
-            if (cartProd.getUserid()== UserUtil.getLoggedUser().getId()){
-                System.out.println(cartProd.getTitle()+" "+cartProd.getCount()+" "+cartProd.getPrice());
+        Boolean isEmpty = true;
+        if(Cart != null){
+            for (Cart cartProd : Cart) {
+                if (cartProd.getUserid() == UserUtil.getLoggedUser().getId()) {
+                    isEmpty = false;
+                    break;
+                }
             }
         }
+
+        if(isEmpty){
+            System.out.println("YOUR CART IS EMPTY");
+        } else {
+            for (Cart cartProd : Cart) {
+                if (cartProd.getUserid() == UserUtil.getLoggedUser().getId()) {
+                    System.out.println(cartProd.getTitle() + " " + cartProd.getCount() + " " + cartProd.getPrice());
+                }
+            }
+        }
+
+
+
     }
 }

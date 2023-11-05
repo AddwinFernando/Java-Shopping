@@ -12,13 +12,16 @@ public class HomeController {
     private final CartController cartController;
     private final OrderController orderController;
 
+    private final AuthController authController;
 
-    public HomeController() {
+
+    public HomeController(AuthController authController) {
         this.homePage = new HomePage();
         this.categoryController = new CategoryController(this);
         this.productController = new ProductController(this);
         this.cartController = new CartController(this);
         this.orderController = new OrderController(this);
+        this.authController = authController;
     }
 
     public void printMenu() {
@@ -34,7 +37,7 @@ public class HomeController {
             } else if (choice == 4) {
                 orderController.printOrders();
             } else if (choice == 5) {
-                System.out.println(choice);
+                authController.logout();
             } else {
                 invalidChoice(new AppException(StringUtil.INVALID_CHOICE));
             }

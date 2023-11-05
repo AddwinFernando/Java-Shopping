@@ -78,13 +78,17 @@ public class LoadUtils {
 
     public static void logoutCartLoad(ArrayList<Cart> cart){
         try{
-            FileWriter csv = new FileWriter(FileUtil.getCartFile());
+            FileWriter csv = new FileWriter(FileUtil.getCartFile(),false);
             for(Cart cartProd: cart){
+                csv.append("\n");
                 csv.append(cartProd.getUserid()+","+cartProd.getId()+","+cartProd.getTitle()+","+cartProd.getCount()+","+cartProd.getPrice());
             }
+            csv.flush();
+            csv.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
 
 
     }

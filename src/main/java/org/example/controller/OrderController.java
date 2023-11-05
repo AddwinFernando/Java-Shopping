@@ -27,12 +27,15 @@ public class OrderController {
             int id = (int) (Math.random()*100);
 
             for (Cart cartProduct:cart){
-                csv.append("\n");
-                csv.append(id+","+cartProduct.getTitle()+","+cartProduct.getCount()+","+ StringUtil.STATUSP+","+UserUtil.getLoggedUser().getId());
+                if(UserUtil.getLoggedUser().getId() == cartProduct.getUserid()){
+                    csv.append("\n");
+                    csv.append(id+","+cartProduct.getTitle()+","+cartProduct.getCount()+","+ StringUtil.STATUSP+","+UserUtil.getLoggedUser().getId());
+                    cart.remove(cartProduct);
+                }
             }
             csv.flush();
             csv.close();
-            UserUtil.setLoggedUser(null);
+            LoadUtils.logoutCartLoad(cart);
         } catch (IOException e) {
             e.printStackTrace();
         }

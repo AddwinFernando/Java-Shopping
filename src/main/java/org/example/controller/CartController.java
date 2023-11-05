@@ -74,12 +74,11 @@ public class CartController {
             currCartProd.setPrice((int) (currCartProd.getPrice()* currCartProd.getCount()));
         }
         LoadUtils.setCart(Cart);
+        LoadUtils.logoutCartLoad(Cart);
         UserUtil.setLoggedUser(loggedInUser);
     }
 
     private void checkout() {
-        ArrayList<Cart> Cart = LoadUtils.getCart();
         orderController.checkout();
-        LoadUtils.logoutCartLoad(Cart);
     }
 }

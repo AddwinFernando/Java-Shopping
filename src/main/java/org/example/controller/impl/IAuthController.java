@@ -7,5 +7,5 @@ public interface IAuthController {
     void authMenu() throws AppException;
     void login() throws AppException;
     void register() throws AppException;
-    void logout();
+    void logout() throws AppException;
 }
